@@ -1,0 +1,19 @@
+#header{
+    background-color: #023059;
+}
+
+#miniHeader{
+    background-color: #021A3C;
+}
+
+#comicHeader {
+    font-family: 'Faster One', cursive;
+    text-shadow: #000000;
+    font-size: 100px;
+}
+
+#comic {
+    font-family: 'Permanent Marker', cursive;
+    color: #BBC2CC;
+    text-shadow: #000000;
+}
