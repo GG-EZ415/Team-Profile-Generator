@@ -3,11 +3,12 @@ const fs = require('fs');
 const Manager = require('./lib/manager');
 const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
-const generateHTML = require('./src/generateHTML');
-
+const Employee = require('./lib/Employee');
+const generateHTML = require('./src/index');
+const outputPath = './dist/index.html';
 const team = [];
+const path = require('path');
 
-function start() {
     function createTeam () {
         inquirer.prompt([{
           type: "list",
@@ -26,8 +27,9 @@ function start() {
               addIntern();
               break;
     
-            default:
-              htmlBuilder();
+            case "No more team members are needed.":
+              create();
+              break;
           }
         })
       };
@@ -103,18 +105,22 @@ const addEmployee = () => {
             type: "list",
             message: "Please select from the following:",
             name: "menu",
-            choices: ["Engineer", "Intern", "Neither"],
+            choices: ["Engineer", "Intern", "Manager", "Neither"],
         }
-    ]).then(employeeData => {
-        switch (employeeData.menu) {
+    ]).then(employee => {
+        switch (employee.menu) {
             case "Intern":
                 addIntern();
                 break;
             case "Engineer":
                 addEngineer();
                 break;
-            default:
-                writeFile();
+            case "Manager":
+                addManager();
+                break;
+            case "Neither":
+                create();
+                break;
         }
     });    
 }
@@ -245,16 +251,9 @@ const addEngineer = () => {
     })
 };
 
-const writeFile = () => {
-    fs.writeFile('./resources/index.html', generateHTML(team), err => {
-        if (err) {
-            console.log(err);
-            return;
-        } else {
-            console.log("Team profile created")
-        }
-    })
-}; 
+const create = () => {
+    console.log("Team profile created")
+    fs.writeFileSync(outputPath, generateHTML(team))
+    
 };
 createTeam();
-start();

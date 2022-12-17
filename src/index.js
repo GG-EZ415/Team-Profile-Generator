@@ -1,3 +1,20 @@
+const createEmployee = function (employee) {
+    return `
+    <div class="card employee-card p-4 m-2">
+    <div id="miniHeader" class="card-header">
+    <h2 id="comic" class="card-title text-center">${employee.name}</h2>
+    <h3 id="comic" class="card-title text-center">Manager</h3>
+        </div>
+            <div class="card-body">
+            <ul class="list-group">
+                <li class="id">ID: ${employee.id}</li>
+                <li class="email">Email: <a href="mailto:${employee.email}">${employee.email}</a></li>
+                <li class="office">Office Number: ${employee.office}</li>
+            </ul>
+        </div>
+    </div>
+    `;
+}
 const createManager = function (manager) {
     return `
     <div class="card employee-card p-4 m-2">
@@ -53,7 +70,7 @@ const createIntern = function (intern) {
 };
 
 const createTeamPage = function (employeeInfo) {   
-  return`
+  return `
   <!DOCTYPE html>
   <html lang="en">
   <head>
@@ -88,28 +105,21 @@ const createTeamPage = function (employeeInfo) {
   `
 };
 
-generateHTML = (data) => {
-    pageArray = [];
-    for (let i = 0; i < data.length; i++) {
-        const employee = data[i];
-        const role = employee.getRole(); 
-        if (role === 'Manager') {
-            const managerCard = createManager(employee);
-            pageArray.push(managerCard);
-        }
-        if (role === 'Engineer') {
-            const engineerInfo = createEngineer(employee);
-            pageArray.push(engineerInfo);
-        }
-        if (role === 'Intern') {
-            const internInfo = createIntern(employee);
-            pageArray.push(internInfo);
-        }
+generateHTML = (employees) => {
+    let generatedCards = ``;
+  employees.forEach(function(employee){
+    if (employee.getRole() === "Manager"){
+      let manager = createManager(employee)
+      generatedCards += manager
+    } else if (employee.getRole() === "Engineer"){
+      let engineer = createEngineer(employee)
+      generatedCards += engineer
+    } else if (employee.getRole() === "Intern"){
+      let intern = createIntern(employee)
+      generatedCards += intern
     }
-    const employeeInfo = pageArray.join('')
-    const createTeam = createTeamPage(employeeInfo); 
-    return createTeam;
+  })
 };
 
 
-module.exports = generateHTML; 
+module.exports = generateHTML;

@@ -1,23 +1,31 @@
 {
+  "dependencies": {
+    "innit": "^0.0.0",
+    "inquirer": "^8.0.0",
+    "jest": "^29.3.1",
+    "nodemon": "^2.0.20"
+  },
   "name": "team-profile-generator",
-  "version": "1.0.0",
   "description": "________________________\r I built a Node.js command-line application that takes in information about employees on a software engineering team and generates an HTML webpage that displays summaries for each person.",
+  "version": "1.0.0",
   "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index",
+    "watch": "nodemon index",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/GG-EZ415/Team-Profile-Generator.git"
   },
-  "author": "",
+  "author": "Kilisi",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/GG-EZ415/Team-Profile-Generator/issues"
   },
-  "homepage": "https://github.com/GG-EZ415/Team-Profile-Generator#readme",
-  "dependencies": {
-    "inquirer": "^9.1.4",
-    "jest": "^29.2.1"
-  }
+  "homepage": "https://github.com/GG-EZ415/Team-Profile-Generator#readme"
 }
